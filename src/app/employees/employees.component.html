@@ -1,0 +1,26 @@
+<p class="text-right">Total of <span class="text-danger">{{total}}</span> employees</p>
+<div class="card-deck" *ngFor = 'let employee of currentEmployees; let i = index'>
+  <div class="col-md-3">
+  <div class="card" (click)="detail(employee.id)" style="cursor: pointer; display: inline-block; padding-left: 6px;">
+      <div class="card-body">
+          <img class="card-img" src="{{employee.imageUrl}}" alt="">
+          <p class="card-text text-center back">{{employee.firstName}} {{employee.lastName}}</p>
+      </div>
+  </div>
+  &nbsp;
+</div>
+</div>
+<br>
+<nav>
+  <ul class="pagination justify-content-end">
+      <li class="page-item" [ngClass]="{disabled:currentPage === 1}">
+          <a class="page-link" (click)="pageChange(currentPage-1)">Previous</a>
+      </li>
+      <li  class="page-item" *ngFor= "let page of pager" [ngClass]="{active: currentPage === page}">
+          <a class="page-link" (click)="pageChange(page)">{{ page }}</a>
+      </li>
+      <li  class="page-item" [ngClass]="{disabled:currentPage === totalPages}">
+          <a class="page-link" (click)="pageChange(currentPage+1)">Next</a>
+      </li>
+  </ul>
+</nav>

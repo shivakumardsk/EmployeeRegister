@@ -253,7 +253,7 @@ export class EmployeesComponent implements OnInit {
     // ];
     // localStorage.setItem('employees', JSON.stringify(emp));
     this.employees = JSON.parse(localStorage.getItem('employees'));
-    if(this.employees.length > 0){
+    if(this.employees && this.employees.length > 0){
       this.showEmployees = true;
       this.total = this.employees.length;
       this.totalPages= Math.ceil(this.total/8);

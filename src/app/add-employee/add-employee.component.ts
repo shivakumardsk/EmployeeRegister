@@ -20,10 +20,10 @@ export class AddEmployeeComponent implements OnInit {
       this.employeeId = +Params["id"];
     })
     this.employeeForm = new FormGroup({
-      firstName: new FormControl(null),
-      lastName: new FormControl(null),
-      email: new FormControl(null),
-      imageUrl: new FormControl(null)
+      firstName: new FormControl(null, [Validators.required]),
+      lastName: new FormControl(null, [Validators.required]),
+      email: new FormControl(null, [Validators.required]),
+      imageUrl: new FormControl(null, [Validators.required])
     });
 
     if(this.employeeId >= 0){
@@ -40,6 +40,7 @@ export class AddEmployeeComponent implements OnInit {
   }
 
   onSubmit(){
+    if(this.employeeForm.valid){
     if(this.employeeId && this.employeeId == 0){
       let empCopy: Employee[] = JSON.parse(localStorage.getItem('employees'));
       let emp: Employee = this.employeeForm.value;
@@ -74,6 +75,7 @@ export class AddEmployeeComponent implements OnInit {
       localStorage.setItem('employees', JSON.stringify(empCopy));
       this.router.navigateByUrl('employees');
     }
+  }
   }
   }
 }

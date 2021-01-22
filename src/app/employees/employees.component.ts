@@ -13,6 +13,8 @@ export class EmployeesComponent implements OnInit {
   currentPage: number = 1;
   currentEmployees: Employee[] = [];
   pager: number[] = [];
+  message: string;
+  showEmployees: boolean = false;
   constructor(private router: Router) { }
 
   ngOnInit() {
@@ -251,13 +253,19 @@ export class EmployeesComponent implements OnInit {
     // ];
     // localStorage.setItem('employees', JSON.stringify(emp));
     this.employees = JSON.parse(localStorage.getItem('employees'));
-    this.total = this.employees.length;
-    this.totalPages= Math.ceil(this.total/8);
-    this.pager = [];
-    for(let i=1; i<=this.totalPages; i++){
-      this.pager.push(i);
+    if(this.employees.length > 0){
+      this.showEmployees = true;
+      this.total = this.employees.length;
+      this.totalPages= Math.ceil(this.total/8);
+      this.pager = [];
+      for(let i=1; i<=this.totalPages; i++){
+        this.pager.push(i);
+      }
+      this.pageEmployees();
+    }else{
+      this.showEmployees = false;
+      this.message = "No Employees Available, Add To View";
     }
-    this.pageEmployees();
   }
   pageEmployees() {
     let firstIndex = (8*this.currentPage-8);

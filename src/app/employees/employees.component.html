@@ -1,3 +1,7 @@
+<div *ngIf="!showEmployees">
+  <h3 style="color: blue;">{{message}}</h3>
+</div>
+<div *ngIf="showEmployees">
 <p class="text-right">Total of <span class="text-danger">{{total}}</span> employees</p>
 <div class="card-deck" *ngFor = 'let employee of currentEmployees; let i = index'>
   <div class="col-md-3">
@@ -24,3 +28,4 @@
       </li>
   </ul>
 </nav>
+</div>

@@ -31,6 +31,6 @@ export class EmployeeDetailComponent implements OnInit {
     let index = emps.map((e) => { return e.id}).indexOf(this.employeeId);
     emps.splice(index, 1);
     localStorage.setItem('employees', JSON.stringify(emps));
-    this.router.navigateByUrl('/employees');
+    this.router.navigateByUrl('/');
   }
 }
